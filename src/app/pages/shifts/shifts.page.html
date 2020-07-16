@@ -1,0 +1,26 @@
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Patients Shift History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list>
+    <ion-list-header>
+      Recent Shifts
+    </ion-list-header>
+
+    <ion-item  *ngFor="let shift of shifts" >
+      <ion-label>
+        <h2>{{ shift.username }}</h2>
+        <h3>profession {{ shift.profession }}</h3>
+        <p> notes {{ shift.notes }}</p>
+        <p> at {{ shift.time | date:'short' }}</p>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

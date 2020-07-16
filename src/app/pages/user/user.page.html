@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    {{ user.profession }} INFO
+ 
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-avatar slot="start">
+      <img width="25px" *ngIf="user.profession == 'Doctor'" height="25px" src="https://i.pinimg.com/originals/26/4e/30/264e30439c42387c1e3c48d2d038429d.png">
+        <img width="25px" *ngIf="user.profession == 'Nurse'" height="25px" src="https://i.pinimg.com/originals/26/45/bf/2645bff0709e4cf23bcaff6690965816.png">
+    </ion-avatar>
+    <ion-label>
+      <h3> Name : {{  user.username }}</h3>
+      <p>Added {{  user.createdAt  | date:'short' }}</p>
+      <p>Profession {{  user.profession   }}</p>
+    </ion-label>
+  </ion-item>
+  <ion-list>
+    <ion-list-header>
+       Shifts Timings by {{ user.profession }}  {{  user.username }}
+    </ion-list-header>
+
+    <ion-item  *ngFor="let shift of shifts" >
+      <ion-label>
+        <p> notes {{ shift.notes }}</p>
+        <p> at {{ shift.time | date:'short' }}</p>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
+
+
+  
+  

@@ -1,0 +1,49 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon name="arrow-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title (tap)="showContactProfile()">
+      <ion-label>
+        <h2>{{ name }}</h2>
+      </ion-label>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="NewArray.length==0" (click)="add()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="NewArray.length!=0" (click)="minus()">
+        <ion-icon name="remove-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ol *ngIf="NewArray.length==0" >
+    <li  *ngFor="let array of OldArray;" >
+<h5>{{ array.category }}</h5>
+<span>{{ array.description }}</span>
+    </li>
+  </ol>
+  <ion-list lines="full" class="ion-no-margin ion-no-padding">
+    <ion-item *ngFor="let array of NewArray; let i = index ">
+      <ion-label position="stacked">Category name <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input [(ngModel)]="array.category"  required="true" type="text"></ion-input>
+      <ion-label position="stacked">Category Descrption <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input [(ngModel)]="array.description"  required="true" type="text"></ion-input>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer *ngIf="NewArray.length!=0" class="ion-no-border">
+  <ion-toolbar>
+    <ion-button (click)="addCategory()" expand="block">add to {{ name }}</ion-button>
+  </ion-toolbar>
+</ion-footer>

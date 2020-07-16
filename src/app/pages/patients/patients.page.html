@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+   
+    <ion-title>Patients</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Bed ID</th>
+      <th>
+        <h6>Last Updated by</h6>
+      </th>
+    </tr>
+    <tr  (click)="Open(patient)"  *ngFor="let patient of patients" >
+      <td>{{ patient.name }} <span class="id"><b>({{patient.uhid}})</b></span> </td>
+      <td>{{ patient.bed_no }}</td>
+      <td>{{ patient.UpdatedBy }} <span class="id"><br><b>[{{ patient.LastUpdatedAt  | date:'short' }}]</b></span> </td>
+    </tr>
+
+
+  </table>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button (click)="Add()" color="primary">
+      <ion-icon name="add-circle-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

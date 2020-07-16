@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon name="arrow-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Edit Patient</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size="12" size-sm="10" offset-sm="1" size-md="8" offset-md="2" size-lg="6" offset-lg="3" size-xl="4"
+      offset-xl="4">
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="ion-text-center">Edit Patient INFO</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+
+          <ion-item lines="none">
+            <ion-label position="stacked">Name</ion-label>
+            <ion-input type="text" readonly  placeholder="Patient Name" name="name" [(ngModel)]="patient.name"></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label position="stacked">uhid</ion-label>
+            <ion-input type="text" readonly placeholder="Patient Name" name="uhid" [(ngModel)]="patient.uhid"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Current status</ion-label>
+            <ion-select [(ngModel)]="patient.current_status" required >
+              <ion-select-option  value="Critical">Critical</ion-select-option>
+              <ion-select-option value="Nuetral">Nuetral</ion-select-option>
+              <ion-select-option value="Healthy">Healthy</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>System status</ion-label>
+            <ion-select [(ngModel)]="patient.system_status" required >
+              <ion-select-option  value="Option 1">Option 1</ion-select-option>
+              <ion-select-option value="Option 2">Option 2</ion-select-option>
+              <ion-select-option value="Option 3">Option 3</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label position="stacked">Bed Number</ion-label>
+            <ion-input type="text" readonly placeholder="Bed Number or ID" name="bedno" [(ngModel)]="patient.bed_no"></ion-input>
+          </ion-item>
+          <ion-button class="ion-margin-top ion-padding-horizontal" (click)="update()" expand="block">Update Patient</ion-button>
+
+        </ion-card-content>
+      </ion-card>
+
+    </ion-col>
+  </ion-row>
+</ion-content>

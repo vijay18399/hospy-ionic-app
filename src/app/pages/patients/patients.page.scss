@@ -1,0 +1,27 @@
+ion-col > div {
+    background-color: #f7f7f7;
+    border: solid 1px #ddd;
+    padding: 10px;
+  }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #383434;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  h6{
+      font-size: small;
+  }
+  .id{
+font-size: 10px;
+color:rgb(22, 1, 1);
+  }

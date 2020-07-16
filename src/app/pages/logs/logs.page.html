@@ -1,0 +1,25 @@
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Patients Log History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list>
+    <ion-list-header>
+      Recent Logs
+    </ion-list-header>
+
+    <ion-item  *ngFor="let log of logs" >
+      <ion-label>
+        <h2>{{ log.description }}</h2>
+        <h3>done by {{ log.username }}</h3>
+        <p> at {{ log.At  | date:'short' }}</p>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    Patient INFO
+    <ion-buttons slot="end">
+      
+      <ion-button  (click)="Edit()">
+        <ion-icon name="pricetag"></ion-icon>
+      </ion-button>
+  
+     
+      <ion-button  (click)="Logs()">
+        <ion-icon name="today-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+  <ion-item>
+    <ion-avatar slot="start">
+      <img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png">
+    </ion-avatar>
+    <ion-label>
+      <h3> Name : {{  patient.name }}</h3>
+      <p>Added {{  patient.createdAt  | date:'short' }}</p>
+    </ion-label>
+  </ion-item>
+
+  
+  <ion-card-header>
+    <ion-card-title>Patient ID : {{  patient.uhid }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-list >
+      <ion-item>
+      1.BED Number - {{  patient.bed_no }}
+      </ion-item>
+      <ion-item>
+        2.Current Status Values - {{  patient.current_status }}
+       </ion-item>
+       <ion-item>
+        3.System Status - {{  patient.system_status }}
+       </ion-item>
+       <ion-item>
+        4.LastUpdatedAt {{  patient.LastUpdatedAt | date:'short' }}
+       </ion-item> 
+       
+    </ion-list>
+  </ion-card-content>
+</ion-card>
+<ion-card>
+  <ion-row>
+    <ion-col size="6" center text-center>
+      <ion-button (click)="Shifts()" color="danger" expand="full"  >
+      
+        <div>End Shift</div>
+      </ion-button>
+    </ion-col>
+    <ion-col size="6" center text-center>
+      <ion-button (click)="OpenShifts()" color="success"  expand="full"  >
+
+        <div>All Shifts</div>
+      </ion-button>
+    </ion-col>
+  
+  </ion-row>
+</ion-card>
+</ion-content>
+  <ion-footer>
+    <ion-row>
+      <ion-col size="4" center text-center>
+        <ion-button (click)="Open('history')" expand="full" fill="clear" >
+        
+          <div>History</div>
+        </ion-button>
+      </ion-col>
+      <ion-col size="4" center text-center>
+        <ion-button (click)="Open('recommendations')"  expand="full" fill="clear" >
+  
+          <div>directions</div>
+        </ion-button>
+      </ion-col>
+      <ion-col size="4" center text-center>
+        <ion-button (click)="Open('assessment')"  expand="full" fill="clear" >
+          <div>Assesment</div>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-footer>

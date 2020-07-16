@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="signOut()">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>All Staff</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="loadUsers($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngIf="users.length == 0">
+    <ion-item *ngFor="let i of [1,2,3,4]">
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item *ngFor="let user of users"  (click)="Open(user)">
+      <ion-avatar slot="start">
+        <img width="25px" *ngIf="user.profession == 'Doctor'" height="25px" src="https://i.pinimg.com/originals/26/4e/30/264e30439c42387c1e3c48d2d038429d.png">
+        <img width="25px" *ngIf="user.profession == 'Nurse'" height="25px" src="https://i.pinimg.com/originals/26/45/bf/2645bff0709e4cf23bcaff6690965816.png">
+        </ion-avatar>
+      <ion-chip slot="end" color="primary">{{ user.createdAt | date:'short'}}</ion-chip>
+
+      <ion-label class="ion-text-wrap">
+        {{ user.username }} 
+   
+      </ion-label>
+
+    </ion-item>
+  </ion-list>
+</ion-content>
