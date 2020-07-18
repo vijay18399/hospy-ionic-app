@@ -3,6 +3,7 @@ import { ApiService, User } from '../../services/api.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-array-adder',
   templateUrl: './array-adder.page.html',
@@ -13,7 +14,7 @@ export class ArrayAdderPage implements OnInit {
   id = 'kdkkdkdkkdkdkdkd';
   data = null;
   OldArray = [{ category: 'some', description: 'okok' }, { category: 'some', description: 'okok' }];
-  NewArray = [];
+  NewArray = [{ category: '', description: '' }];
   patient=null;
  user = null;
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private api: ApiService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
@@ -77,8 +78,12 @@ export class ArrayAdderPage implements OnInit {
         if (res) {
           this.OldArray =  outcome;
           this.NewArray = [];
-          let message = "added successfully";
-          alert(message);
+          Swal.fire(
+            'Good job!',
+            'You added a '+this.name+' Successfully',
+            'success'
+          );
+          this.back();
         }
       }, async err => {
         const alert = await this.alertCtrl.create({

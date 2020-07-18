@@ -22,7 +22,6 @@ const routes: Routes = [
       import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
     canActivate: [AuthGuard]
   },
-  { path: 'patients', loadChildren: './pages/patients/patients.module#PatientsPageModule' },
   { path: 'patient/:id', loadChildren: './pages/patient/patient.module#PatientPageModule' },
   { path: 'history', loadChildren: './pages/history/history.module#HistoryPageModule' },
   { path: 'add-patient', loadChildren: './pages/add-patient/add-patient.module#AddPatientPageModule' },

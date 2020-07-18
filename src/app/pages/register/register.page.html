@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
+    <ion-buttons  *ngIf="!isDesktop" slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title>Register</ion-title>
@@ -39,6 +39,8 @@
 
           <ion-button class="ion-margin-top ion-padding-horizontal" (click)="register()" expand="block"
             [disabled]="credentials.username == '' || credentials.password == ''">Sign up</ion-button>
+            <ion-button  color="danger" class="ion-margin-top ion-padding-horizontal" [routerLink]="['/']" expand="block"
+            *ngIf="isDesktop"     >Back</ion-button>
 
         </ion-card-content>
       </ion-card>

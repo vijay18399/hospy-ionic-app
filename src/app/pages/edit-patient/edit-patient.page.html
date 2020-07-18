@@ -33,9 +33,11 @@
           <ion-item>
             <ion-label>Current status</ion-label>
             <ion-select [(ngModel)]="patient.current_status" required >
-              <ion-select-option  value="Critical">Critical</ion-select-option>
-              <ion-select-option value="Nuetral">Nuetral</ion-select-option>
-              <ion-select-option value="Healthy">Healthy</ion-select-option>
+              <ion-select-option value="Extremely Critical">Extremely Critical</ion-select-option>
+              <ion-select-option value="Critical">Critical</ion-select-option>
+              <ion-select-option value="Critical">Serious</ion-select-option>
+              <ion-select-option value="Healthy">Stable</ion-select-option>
+              <ion-select-option value="TBD">TBD</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item>

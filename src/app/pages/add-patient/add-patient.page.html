@@ -24,16 +24,27 @@
             <ion-input type="text" placeholder="Patient Name" name="name" [(ngModel)]="patient.name"></ion-input>
           </ion-item>
           <ion-item lines="none">
-            <ion-label position="stacked">uhid</ion-label>
-            <ion-input type="text" placeholder="Patient Name" name="uhid" [(ngModel)]="patient.uhid"></ion-input>
+            <ion-label position="stacked">UHID</ion-label>
+            <ion-input type="text" placeholder="Patient uhid" name="uhid" [(ngModel)]="patient.uhid"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label>Current status</ion-label>
             <ion-select [(ngModel)]="patient.current_status" required value="Critical">
+              <ion-select-option value="Extremely Critical">Extremely Critical</ion-select-option>
               <ion-select-option value="Critical">Critical</ion-select-option>
-              <ion-select-option value="Nuetral">Nuetral</ion-select-option>
-              <ion-select-option value="Healthy">Healthy</ion-select-option>
+              <ion-select-option value="Critical">Serious</ion-select-option>
+              <ion-select-option value="Healthy">Stable</ion-select-option>
+              <ion-select-option value="TBD">TBD</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>System status</ion-label>
+            <ion-select [(ngModel)]="patient.system_status" required >
+              <ion-select-option value="Option 1">Option 1</ion-select-option>
+              <ion-select-option value="Option 2">Option 2</ion-select-option>
+              <ion-select-option value="Option 3">Option 3</ion-select-option>
+              <ion-select-option value="TBD">TBD</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item lines="none">

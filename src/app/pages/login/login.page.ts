@@ -3,7 +3,7 @@ import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
-
+import { Platform } from '@ionic/angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -16,14 +16,24 @@ export class LoginPage implements OnInit {
   };
  
   constructor(
+    public platform: Platform,
     private api: ApiService,
     private router: Router,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController
   ) {}
- 
-  ngOnInit() { }
- 
+ isDesktop = true;
+  ngOnInit() {
+
+this.Detect();
+   }
+ Detect(){
+    if (this.platform.is("ios")) {
+this.isDesktop =  false;
+    } else if (this.platform.is("android")) {
+      this.isDesktop =  false;
+    }
+ }
   async login() {
     const loading = await this.loadingCtrl.create();
     loading.present();

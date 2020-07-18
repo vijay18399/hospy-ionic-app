@@ -17,14 +17,14 @@
     <tr  (click)="Open(patient)"  *ngFor="let patient of patients" >
       <td>{{ patient.name }} <span class="id"><b>({{patient.uhid}})</b></span> </td>
       <td>{{ patient.bed_no }}</td>
-      <td>{{ patient.UpdatedBy }} <span class="id"><br><b>[{{ patient.LastUpdatedAt  | date:'short' }}]</b></span> </td>
+      <td>{{ patient.UpdatedBy }} <span class="id"><br><b>[{{ patient.LastUpdatedAt  | date:'mediumDate' }}]</b></span> </td>
     </tr>
 
 
   </table>
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
     <ion-fab-button (click)="Add()" color="primary">
-      <ion-icon name="add-circle-outline"></ion-icon>
+      <ion-icon name="person-add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 

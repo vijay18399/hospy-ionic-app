@@ -56,6 +56,7 @@ export class ApiService {
     return this.http.post(`${environment.apiUrl}/auth`, credentials).pipe(
       take(1),
       map(res => {
+        console.log(res);
         // Extract the JWT
         return res['token'];
       }),
@@ -73,6 +74,7 @@ export class ApiService {
     return this.http.post(`${environment.apiUrl}/users`, credentials).pipe(
       take(1),
       switchMap(res => {
+        
         console.log('result: ', res);
         return this.login(credentials);
       })

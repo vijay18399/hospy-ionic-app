@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, Platform } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -17,13 +17,25 @@ export class RegisterPage implements OnInit {
   };
  
   constructor(
+    public platform: Platform,
     private api: ApiService,
     private router: Router,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController
   ) {}
  
-  ngOnInit() { }
+  isDesktop = true;
+  ngOnInit() {
+
+this.Detect();
+   }
+ Detect(){
+    if (this.platform.is("ios")) {
+this.isDesktop =  false;
+    } else if (this.platform.is("android")) {
+      this.isDesktop =  false;
+    }
+ }
  
   async register() {
     const loading = await this.loadingCtrl.create();
@@ -33,6 +45,7 @@ export class RegisterPage implements OnInit {
       finalize(() => loading.dismiss())
     )
     .subscribe(res => {
+      console.log(res);
         this.router.navigateByUrl('/app');
     }, async err => {
       const alert = await this.alertCtrl.create({

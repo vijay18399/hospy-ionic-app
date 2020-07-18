@@ -1,0 +1,16 @@
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: 550;
+    line-height: 1.2;
+    color: darken($color: #00505a, $amount: 0);
+
+}
+p {
+    color: darken($color: #000000, $amount: 0);
+    display: block;
+  margin: 0px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}

@@ -15,7 +15,7 @@
     </ion-avatar>
     <ion-label>
       <h3> Name : {{  user.username }}</h3>
-      <p>Added {{  user.createdAt  | date:'short' }}</p>
+      <p>Added {{  user.createdAt  | date:'mediumDate' }}</p>
       <p>Profession {{  user.profession   }}</p>
     </ion-label>
   </ion-item>
@@ -26,8 +26,9 @@
 
     <ion-item  *ngFor="let shift of shifts" >
       <ion-label>
-        <p> notes {{ shift.notes }}</p>
-        <p> at {{ shift.time | date:'short' }}</p>
+        <p> <b>Patient ID : </b> {{ shift.uhid }}</p>
+        <p> <b>Notes : </b> {{ shift.notes }}</p>
+        <p> at {{ shift.time | date:'mediumDate' }}</p>
       </ion-label>
     </ion-item>
 

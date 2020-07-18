@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-edit-patient',
@@ -41,8 +42,11 @@ async update(){
   )
     .subscribe(res => {
       if (res) {
-        let message = "added successfully";
-        alert(message);
+        Swal.fire(
+          'You made Updates to Patient '+ this.patient.uhid,
+          'Updated Successfully',
+          'success'
+        )
       }
     }, async err => {
       const alert = await this.alertCtrl.create({

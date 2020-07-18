@@ -33,6 +33,7 @@
     "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-x-toast": "^2.7.2",
     "rxjs": "~6.5.1",
+    "sweetalert2": "^9.17.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },

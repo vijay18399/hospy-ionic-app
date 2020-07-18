@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService, User } from '../../services/api.service';
 import { finalize, tap } from 'rxjs/operators';
 import { AlertController, LoadingController } from '@ionic/angular';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.page.html',
@@ -69,10 +70,11 @@ export class PatientPage implements OnInit {
     )
       .subscribe(res => {
         if (res) {
+          console.log(res);
           this.patient = res[0];
         }
       }, async err => {
-        alert(err);
+        Swal.fire('Oops...', 'Something went wrong!', 'error');
       });
   }
   Logs() {
@@ -113,7 +115,8 @@ export class PatientPage implements OnInit {
           let  profession =  this.user['profession'];
           let notes = data.notes;
           let patient_id = this.patient._id;
-          this.add({username,notes,profession, patient_id});
+          let uhid = this.patient.uhid;
+          this.add({username,notes,profession, patient_id,uhid});
           }
         }
       ]
@@ -144,10 +147,14 @@ export class PatientPage implements OnInit {
     this.api.addShift(shift).pipe()
     .subscribe(res => {
       if (res) {
-       alert('Shift Recorded succesfully');
+       Swal.fire(
+        'Good job!',
+        'Shift Recorded succesfully',
+        'success'
+      );
       }
     },  err => {
-      alert('Error  Recorded ');
+      Swal.fire('Oops...', 'Something went wrong!', 'error');
     });
   }
   
