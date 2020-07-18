@@ -29,7 +29,11 @@ const routes: Routes = [
   { path: 'edit-patient', loadChildren: './pages/edit-patient/edit-patient.module#EditPatientPageModule' },
   { path: 'logs', loadChildren: './pages/logs/logs.module#LogsPageModule' },
   { path: 'user/:id', loadChildren: './pages/user/user.module#UserPageModule' },
-  { path: 'shifts', loadChildren: './pages/shifts/shifts.module#ShiftsPageModule' }
+  { path: 'shifts', loadChildren: './pages/shifts/shifts.module#ShiftsPageModule' },
+  {
+    path: 'web',
+    loadChildren: () => import('./pages/web/web.module').then( m => m.WebPageModule)
+  }
 ];
 
 @NgModule({

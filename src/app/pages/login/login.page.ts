@@ -43,7 +43,13 @@ this.isDesktop =  false;
     )
     .subscribe(res => {
       if (res) {
-        this.router.navigateByUrl('/app');
+        if(this.isDesktop){
+          this.router.navigateByUrl('/web');
+        }
+        else{
+          this.router.navigateByUrl('/app');
+        }
+      
       }
     }, async err => {
       const alert = await this.alertCtrl.create({

@@ -46,7 +46,12 @@ this.isDesktop =  false;
     )
     .subscribe(res => {
       console.log(res);
+      if(this.isDesktop){
+        this.router.navigateByUrl('/web');
+      }
+      else{
         this.router.navigateByUrl('/app');
+      }
     }, async err => {
       const alert = await this.alertCtrl.create({
         header: 'Registration failed',
