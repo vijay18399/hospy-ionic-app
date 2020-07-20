@@ -37,6 +37,10 @@ export class PatientPage implements OnInit {
     // this.isDesktop = this.sizerService.isDesktop();
     this.Detect();
     this.patientid = this.activatedRoute.snapshot.paramMap.get('id');
+    this.api.getUserData().subscribe(response => {
+      this.user = response[0];
+      console.log(this.user);
+    });
   }
   Detect() {
     if (this.platform.is("ios")) {
@@ -107,6 +111,9 @@ export class PatientPage implements OnInit {
 
   }
   async Shifts() {
+    this.api.getUserData().subscribe(response => {
+      this.user = response[0];
+    });
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Shift Ended ',
@@ -128,6 +135,7 @@ export class PatientPage implements OnInit {
         }, {
           text: 'Ok',
           handler: (data) => {
+        
             let username = this.user['username'];
             let profession = this.user['profession'];
             let notes = data.notes;

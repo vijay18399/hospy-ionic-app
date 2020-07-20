@@ -26,5 +26,6 @@
     <ion-fab-button *ngIf="!isDesktop" (click)="add()" color="primary">
       <ion-icon name="person-add-outline"></ion-icon>
     </ion-fab-button>
+    <ion-button   *ngIf="isDesktop" (click)="add()" color="danger">  <ion-icon name="person-add-outline"></ion-icon>  Add Patient </ion-button>
   </ion-fab>
 </ion-content>

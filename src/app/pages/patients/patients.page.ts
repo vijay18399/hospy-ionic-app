@@ -98,8 +98,10 @@ this.isDesktop =  false;
   async addPatient(data) {
     data.currentstatus = 'TBD';
     data.systemstatus = 'TBD';
+    console.log(this.user);
     data.updatedBy = this.user['username'];
     data.lastUpdatedAt = new Date;
+    console.log(data);
     const loading = await this.loadingCtrl.create();
     loading.present();
     this.api.addPatient(data).pipe(
