@@ -1,6 +1,5 @@
-<ion-header>
-  <ion-toolbar color="primary">
-   
+<ion-header  *ngIf="!isDesktop">
+  <ion-toolbar color='primary'>
     <ion-title>Patients</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,18 +13,18 @@
         <h6>Last Updated by</h6>
       </th>
     </tr>
-    <tr  (click)="Open(patient)"  *ngFor="let patient of patients" >
+    <tr  (click)="openDetails(patient._id)"  *ngFor="let patient of patients" >
       <td>{{ patient.name }} <span class="id"><b>({{patient.uhid}})</b></span> </td>
-      <td>{{ patient.bed_no }}</td>
-      <td>{{ patient.UpdatedBy }} <span class="id"><br><b>[{{ patient.LastUpdatedAt  | date:'mediumDate' }}]</b></span> </td>
+      <td>{{ patient.bedno }}</td>
+      <td>{{ patient.updatedBy }} <span class="id"><br><b>[ {{ patient.lastUpdatedAt  | date:'shortTime' }} {{ patient.lastUpdatedAt  | date:'shortDate' }}]</b></span> </td>
     </tr>
 
 
   </table>
+
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button (click)="Add()" color="primary">
+    <ion-fab-button *ngIf="!isDesktop" (click)="add()" color="primary">
       <ion-icon name="person-add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 </ion-content>

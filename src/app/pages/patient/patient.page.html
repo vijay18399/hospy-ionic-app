@@ -1,138 +1,228 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
+    <ion-buttons *ngIf="!isDesktop" slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
     Patient INFO
     <ion-buttons slot="end">
-
       <ion-button (click)="Edit()">
-        <ion-icon name="create-outline"></ion-icon>
+        <ion-icon *ngIf="!isDesktop" name="create-outline">
+        </ion-icon> <span *ngIf="isDesktop"> Edit Patient</span>
       </ion-button>
-
-
       <ion-button (click)="Logs()">
-        <ion-icon name="eye-outline"></ion-icon>
+        <ion-icon *ngIf="!isDesktop" name="eye-outline"></ion-icon>
+        <span *ngIf="isDesktop"> Patient Logs</span>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-item>
-      <ion-avatar slot="start">
-        <img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png">
-      </ion-avatar>
-      <ion-label>
-        <h3> Name : {{  patient.name }}</h3>
-        <p>Added {{  patient.createdAt  | date:'mediumDate' }}</p>
-      </ion-label>
-    </ion-item>
-
-
-    <ion-card-header>
-      <ion-card-title>Patient ID : {{  patient.uhid }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          1.BED Number - {{  patient.bed_no }}
-        </ion-item>
-        <ion-item>
-          2.Current Status Values - {{  patient.current_status }}
-        </ion-item>
-        <ion-item>
-          3.System Status - {{  patient.system_status }}
-        </ion-item>
-        <ion-item>
-          4.LastUpdatedAt {{  patient.LastUpdatedAt | date:'mediumDate' }}
-        </ion-item>
-
-
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
+  <ion-grid>
     <ion-row>
-      <ion-col size="9" center text-center>
-        <ion-card-header>
-          <ion-card-title>History</ion-card-title>
+      <ion-col size="12" size-sm>
+        <ion-card>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png">
+            </ion-avatar>
+            <ion-label>
+              <h3> Name : {{  patient.name }}</h3>
+              <p> time {{ patient.createdAt  | date:'shortTime' }}</p>
+              <p> date {{ patient.createdAt | date:'shortDate' }}</p>
+            </ion-label>
+          </ion-item>
 
-        </ion-card-header>
-      </ion-col>
-      <ion-col size="2" center text-center>
-        <ion-button size="small" (click)="Open('history')">
-          <ion-icon name="add-outline"></ion-icon>
-        </ion-button>
-      </ion-col>
 
+          <ion-card-header>
+            <ion-card-title>Patient ID : {{  patient.uhid }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                1.BED Number - {{  patient.bedno }}
+              </ion-item>
+              <ion-item>
+                2.Current Status - {{  patient.currentstatus }}
+              </ion-item>
+              <ion-item>
+                3.System Status - {{  patient.systemstatus }}
+              </ion-item>
+              <ion-item>
+                4.LastUpdatedAt {{  patient.lastUpdatedAt | date:'shortTime' }}   {{  patient.lastUpdatedAt | date:'shortDate' }}   
+              </ion-item>
+
+
+            </ion-list>
+          </ion-card-content>
+          <ion-row *ngIf="isDesktop">
+            <ion-col size="6" center text-center>
+              <ion-button (click)="Shifts()" color="danger" expand="full">
+
+                <div>End Shift</div>
+              </ion-button>
+            </ion-col>
+            <ion-col size="6" center text-center>
+              <ion-button (click)="OpenShifts()" color="success" expand="full">
+
+                <div>All Shifts</div>
+              </ion-button>
+            </ion-col>
+            <ion-col size="12" center text-center>
+              <center>
+                <ion-button routerLink="/app/patients" color="secondary">
+
+                  <div>Back</div>
+                </ion-button>
+              </center>
+            </ion-col>
+
+          </ion-row>
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" size-sm>
+        <ion-card>
+          <ion-row>
+            <ion-col size="9" center text-center>
+              <ion-card-header>
+                <ion-card-title>History</ion-card-title>
+
+              </ion-card-header>
+            </ion-col>
+            <ion-col size="2" center text-center>
+              <ion-button size="small" (click)="addTo('history')">
+                <ion-icon name="add-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+
+          </ion-row>
+          <ol *ngIf="history.length==0">
+
+
+            <li *ngFor="let array of patient.history; let i = index">
+              <h5> {{ array.category }}</h5>
+              <p>{{ array.description }}</p>
+            </li>
+          </ol>
+          <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item *ngFor="let array of history; let i = index ">
+              <ion-label position="stacked">Category name <ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-input [(ngModel)]="array.category" required="true" type="text"></ion-input>
+              <ion-label position="stacked">Category Descrption <ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-input [(ngModel)]="array.description" required="true" type="text"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="history.length!=0">
+              <ion-button (click)="Update(history,'history')" size="small">
+                Add to History
+              </ion-button>
+            </ion-item>
+          </ion-list>
+
+
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" size-sm>
+        <ion-card>
+          <ion-row>
+            <ion-col size="9" center text-center>
+              <ion-card-header>
+                <ion-card-title>Recommendations</ion-card-title>
+
+              </ion-card-header>
+            </ion-col>
+            <ion-col size="2" center text-center>
+              <ion-button size="small" (click)="addTo('recommendations')">
+                <ion-icon name="add-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+
+          </ion-row>
+
+          <ol *ngIf="recommendations.length==0">
+
+
+            <li *ngFor="let array of patient.recommendations; let i = index">
+              <h5> {{ array.category }}</h5>
+              <p>{{ array.description }}</p>
+            </li>
+          </ol>
+          <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item *ngFor="let array of recommendations; let i = index ">
+              <ion-label position="stacked">Category name <ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-input [(ngModel)]="array.category" required="true" type="text"></ion-input>
+              <ion-label position="stacked">Category Descrption <ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-input [(ngModel)]="array.description" required="true" type="text"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="recommendations.length!=0">
+              <ion-button (click)="Update(recommendations,'recommendations')" size="small">
+                Add to Recommendations
+              </ion-button>
+            </ion-item>
+          </ion-list>
+
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" size-sm>
+        <ion-card>
+          <ion-row>
+            <ion-col size="9" center text-center>
+              <ion-card-header>
+                <ion-card-title>Assessments</ion-card-title>
+
+              </ion-card-header>
+            </ion-col>
+            <ion-col size="2" center text-center>
+              <ion-button size="small" (click)="addTo('assessment')">
+                <ion-icon name="add-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+
+          </ion-row>
+
+
+          <ol *ngIf="assessment.length==0">
+
+
+            <li *ngFor="let array of patient.assessment; let i = index">
+              <h5> {{ array.category }}</h5>
+              <p>{{ array.description }}</p>
+            </li>
+          </ol>
+          <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item *ngFor="let array of assessment; let i = index ">
+              <ion-label position="stacked">Category name <ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-input [(ngModel)]="array.category" required="true" type="text"></ion-input>
+              <ion-label position="stacked">Category Descrption <ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-input [(ngModel)]="array.description" required="true" type="text"></ion-input>
+            </ion-item>
+          </ion-list>
+          <ion-item *ngIf="assessment.length!=0">
+            <ion-button (click)="Update(assessment,'assessment')" size="small">
+              Add to Assessments
+            </ion-button>
+          </ion-item>
+
+        </ion-card>
+      </ion-col>
     </ion-row>
-    <ol>
 
 
-      <li *ngFor="let array of patient.history; let i = index">
-        <h5> {{ array.category }}</h5>
-        <p>{{ array.description }}</p>
-      </li>
-    </ol>
-
-  </ion-card>
-  <ion-card>
-    <ion-row>
-      <ion-col size="9" center text-center>
-        <ion-card-header>
-          <ion-card-title>Recommendations</ion-card-title>
-
-        </ion-card-header>
-      </ion-col>
-      <ion-col size="2" center text-center>
-        <ion-button size="small" (click)="Open('recommendations')">
-          <ion-icon name="add-outline"></ion-icon>
-        </ion-button>
-      </ion-col>
-
-    </ion-row>
-
-    <ol>
+  </ion-grid>
 
 
-      <li *ngFor="let array of patient.recommendations; let i = index">
-        <h5> {{ array.category }}</h5>
-        <p>{{ array.description }}</p>
-      </li>
-    </ol>
-  </ion-card>
-  <ion-card>
-    <ion-row>
-      <ion-col size="9" center text-center>
-        <ion-card-header>
-          <ion-card-title>Assessments</ion-card-title>
-
-        </ion-card-header>
-      </ion-col>
-      <ion-col size="2" center text-center>
-        <ion-button size="small" (click)="Open('assessment')">
-          <ion-icon name="add-outline"></ion-icon>
-        </ion-button>
-      </ion-col>
-
-    </ion-row>
 
 
-    <ol>
-
-
-      <li *ngFor="let array of patient.assessment; let i = index">
-        <h5> {{ array.category }}</h5>
-        <p>{{ array.description }}</p>
-      </li>
-    </ol>
-  </ion-card>
 </ion-content>
 <ion-footer>
-  <ion-row>
+
+  <ion-row *ngIf="!isDesktop">
+
     <ion-col size="6" center text-center>
       <ion-button (click)="Shifts()" color="danger" expand="full">
 

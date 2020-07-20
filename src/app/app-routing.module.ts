@@ -22,17 +22,25 @@ const routes: Routes = [
       import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
     canActivate: [AuthGuard]
   },
-  { path: 'patient/:id', loadChildren: './pages/patient/patient.module#PatientPageModule' },
-  { path: 'history', loadChildren: './pages/history/history.module#HistoryPageModule' },
-  { path: 'add-patient', loadChildren: './pages/add-patient/add-patient.module#AddPatientPageModule' },
-  { path: 'array-adder', loadChildren: './pages/array-adder/array-adder.module#ArrayAdderPageModule' },
-  { path: 'edit-patient', loadChildren: './pages/edit-patient/edit-patient.module#EditPatientPageModule' },
-  { path: 'logs', loadChildren: './pages/logs/logs.module#LogsPageModule' },
-  { path: 'user/:id', loadChildren: './pages/user/user.module#UserPageModule' },
-  { path: 'shifts', loadChildren: './pages/shifts/shifts.module#ShiftsPageModule' },
   {
-    path: 'web',
-    loadChildren: () => import('./pages/web/web.module').then( m => m.WebPageModule)
+    path: 'patient/:id',
+    loadChildren: () => import('./pages/patient/patient.module').then( m => m.PatientPageModule)
+  },
+  {
+    path: 'shifts',
+    loadChildren: () => import('./pages/shifts/shifts.module').then( m => m.ShiftsPageModule)
+  },
+  {
+    path: 'user/:id',
+    loadChildren: () => import('./pages/user/user.module').then( m => m.UserPageModule)
+  },
+  {
+    path: 'edit-patient',
+    loadChildren: () => import('./pages/edit-patient/edit-patient.module').then( m => m.EditPatientPageModule)
+  },
+  {
+    path: 'logs',
+    loadChildren: () => import('./pages/logs/logs.module').then( m => m.LogsPageModule)
   }
 ];
 

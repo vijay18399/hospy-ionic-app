@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService, User } from '../../services/api.service';
 import { Observable } from 'rxjs';
 import { tap, finalize } from 'rxjs/operators';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, Platform } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -11,14 +11,24 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./users.page.scss'],
 })
 export class UsersPage implements OnInit {
-
+  isDesktop = true;
   users: User[] = [];
 
-  constructor(private api: ApiService,  private activatedRoute: ActivatedRoute,  private router: Router, private loadingCtrl: LoadingController) { }
+  constructor( public platform: Platform,private api: ApiService,  private activatedRoute: ActivatedRoute,  private router: Router, private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.loadUsers();
+    this.Detect();
   }
+
+
+ Detect(){
+    if (this.platform.is("ios")) {
+this.isDesktop =  false;
+    } else if (this.platform.is("android")) {
+      this.isDesktop =  false;
+    }
+ }
   Open(user){
     const navigationExtras = {
       state: {

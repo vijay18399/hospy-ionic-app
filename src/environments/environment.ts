@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://naaserver.herokuapp.com',
+  apiUrl: 'http://localhost:3000',
+ // apiUrl: 'https://naaserver.herokuapp.com',
  // apiUrl: 'https://holidaygift.herokuapp.com'
 };
 

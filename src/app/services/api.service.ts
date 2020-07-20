@@ -138,7 +138,16 @@ shiftforpatient(id){
     take(1)
   );
 }
-
+logforpatient(id){
+  return this.http.get(`${environment.apiUrl}/logforpatient/`+ id  ).pipe(
+    take(1)
+  );
+}
+addLog(data): Observable<any> {
+  return this.http.post(`${environment.apiUrl}/logs`, data).pipe(
+    take(1)
+    );
+}
  
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {

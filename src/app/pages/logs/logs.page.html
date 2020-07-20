@@ -1,9 +1,12 @@
 <ion-header translucent>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
+    <ion-buttons *ngIf="!isDesktop"  slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Patients Log History</ion-title>
+    <ion-buttons *ngIf="isDesktop"  slot="end">
+      <ion-button (click)="back()"  >Back</ion-button>
+       </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -16,8 +19,8 @@
     <ion-item  *ngFor="let log of logs" >
       <ion-label>
         <h2>{{ log.description }}</h2>
-        <h3>done by {{ log.username }}</h3>
-        <p> at {{ log.At  | date:'mediumDate' }}</p>
+        <h3>done by {{ log.username }} {{ log.profession }}</h3>
+        <p> date {{ log.time  | date:'shortTime' }} {{ log.time  | date:'shortDate' }}</p>
       </ion-label>
     </ion-item>
 

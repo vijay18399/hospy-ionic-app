@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
+    <ion-buttons *ngIf="!isDesktop" slot="start">
       <ion-button (click)="back()">
         <ion-icon name="arrow-back-circle-outline"></ion-icon>
       </ion-button>
@@ -32,27 +32,24 @@
 
           <ion-item>
             <ion-label>Current status</ion-label>
-            <ion-select [(ngModel)]="patient.current_status" required >
+            <ion-select [(ngModel)]="patient.currentstatus" required >
               <ion-select-option value="Extremely Critical">Extremely Critical</ion-select-option>
               <ion-select-option value="Critical">Critical</ion-select-option>
-              <ion-select-option value="Critical">Serious</ion-select-option>
+              <ion-select-option value="Serious">Serious</ion-select-option>
               <ion-select-option value="Healthy">Stable</ion-select-option>
               <ion-select-option value="TBD">TBD</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item>
-            <ion-label>System status</ion-label>
-            <ion-select [(ngModel)]="patient.system_status" required >
-              <ion-select-option  value="Option 1">Option 1</ion-select-option>
-              <ion-select-option value="Option 2">Option 2</ion-select-option>
-              <ion-select-option value="Option 3">Option 3</ion-select-option>
-            </ion-select>
+            <ion-label position="stacked">System status</ion-label>
+            <ion-input type="text" placeholder="Patient System Status" name="systemstatus" [(ngModel)]="patient.systemstatus"></ion-input>
           </ion-item>
           <ion-item lines="none">
             <ion-label position="stacked">Bed Number</ion-label>
-            <ion-input type="text" readonly placeholder="Bed Number or ID" name="bedno" [(ngModel)]="patient.bed_no"></ion-input>
+            <ion-input type="text" readonly placeholder="Bed Number or ID" name="bedno" [(ngModel)]="patient.bedno"></ion-input>
           </ion-item>
           <ion-button class="ion-margin-top ion-padding-horizontal" (click)="update()" expand="block">Update Patient</ion-button>
+          <ion-button *ngIf="isDesktop" color="danger" class="ion-margin-top ion-padding-horizontal" (click)="back()" expand="block">Back</ion-button>
 
         </ion-card-content>
       </ion-card>

@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header  *ngIf="!isDesktop">
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-button (click)="signOut()">
@@ -36,7 +36,7 @@
         <img width="25px" *ngIf="user.profession == 'Doctor'" height="25px" src="https://i.pinimg.com/originals/26/4e/30/264e30439c42387c1e3c48d2d038429d.png">
         <img width="25px" *ngIf="user.profession == 'Nurse'" height="25px" src="https://i.pinimg.com/originals/26/45/bf/2645bff0709e4cf23bcaff6690965816.png">
         </ion-avatar>
-      <ion-chip slot="end" color="primary">{{ user.createdAt | date:'mediumDate'}}</ion-chip>
+      <ion-chip slot="end" color="primary">{{ user.createdAt | date:'shortDate'}}</ion-chip>
 
       <ion-label class="ion-text-wrap">
         {{ user.username }} 

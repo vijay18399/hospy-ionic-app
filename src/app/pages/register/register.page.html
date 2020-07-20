@@ -26,7 +26,7 @@
           </ion-item>
           <ion-item>
             <ion-label>Profession</ion-label>
-            <ion-select [(ngModel)]="credentials.profession" required value="Doctor">
+            <ion-select [(ngModel)]="credentials.profession" required >
               <ion-select-option value="Doctor">Doctor</ion-select-option>
               <ion-select-option value="Nurse">Nurse</ion-select-option>
             </ion-select>
@@ -38,7 +38,7 @@
           </ion-item>
 
           <ion-button class="ion-margin-top ion-padding-horizontal" (click)="register()" expand="block"
-            [disabled]="credentials.username == '' || credentials.password == ''">Sign up</ion-button>
+            [disabled]="credentials.profession == '' || credentials.username == '' || credentials.password == ''">Sign up</ion-button>
             <ion-button  color="danger" class="ion-margin-top ion-padding-horizontal" [routerLink]="['/']" expand="block"
             *ngIf="isDesktop"     >Back</ion-button>
 

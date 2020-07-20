@@ -1,10 +1,12 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
+    <ion-buttons *ngIf="!isDesktop"  slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
     {{ user.profession }} INFO
- 
+    <ion-buttons *ngIf="isDesktop"  slot="end">
+      <ion-button (click)="back()" >Back</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -15,7 +17,7 @@
     </ion-avatar>
     <ion-label>
       <h3> Name : {{  user.username }}</h3>
-      <p>Added {{  user.createdAt  | date:'mediumDate' }}</p>
+      <p>Added {{  user.createdAt  | date:'shortDate' }}</p>
       <p>Profession {{  user.profession   }}</p>
     </ion-label>
   </ion-item>
@@ -26,9 +28,10 @@
 
     <ion-item  *ngFor="let shift of shifts" >
       <ion-label>
-        <p> <b>Patient ID : </b> {{ shift.uhid }}</p>
+        <p> <b>Patient UHID : </b> {{ shift.uhid }}</p>
         <p> <b>Notes : </b> {{ shift.notes }}</p>
-        <p> at {{ shift.time | date:'mediumDate' }}</p>
+        <p> time {{ shift.time  | date:'shortTime' }}</p>
+        <p> date {{ shift.time | date:'shortDate' }}</p>
       </ion-label>
     </ion-item>
 
